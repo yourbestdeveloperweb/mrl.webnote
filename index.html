@@ -5,12 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mrl only for note</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenido a tu espacio de notas</h1>
-        <textarea placeholder="Escribe tus notas aquí..."></textarea>
-        <button>Guardar</button>
+        <h1>Notas</h1>
+        <textarea id="noteContent" placeholder="Escribe tu nota aquí..."></textarea>
+        <button onclick="saveNote()">Guardar Nota</button>
+        <div id="notesContainer"></div>
     </div>
+
+
+    <script>
+        // Función para guardar la nota
+        function saveNote() {
+            let noteContent = document.getElementById('noteContent').value;
+            if (noteContent.trim() === '') {
+                alert('Por favor, escribe una nota antes de guardar.');
+                return;
+            }
+            
+            // Crear un contenedor para la nota
+            let noteDiv = document.createElement('div');
+            noteDiv.className = 'note';
+            noteDiv.innerText = noteContent;
+    
+            // Añadir la nota al contenedor de notas
+            document.getElementById('notesContainer').appendChild(noteDiv);
+    
+            // Limpiar el campo de texto
+            document.getElementById('noteContent').value = '';
+        }
+    </script>
+    
 </body>
 </html>
